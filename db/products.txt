@@ -1,47 +1,42 @@
 [
   {
-    "id": 1,
-    "timestamp": "moment().format('L LTS')",
-    "name": "name",
-    "description": "description",
-    "code": "code",
-    "url": "url",
-    "price": "price",
-    "stock": "stock"
+    "id": 3,
+    "timestamp": "03/29/2022 9:50:43 PM",
+    "name": "name4",
+    "description": "description4",
+    "code": "code4",
+    "url": "url4",
+    "price": "price4",
+    "stock": "stock4"
   },
   {
     "id": 1,
-    "timestamp": "03/29/2022 7:56:58 PM",
-    "price": "22"
-  },
-  {
-    "id": 1,
-    "timestamp": "03/29/2022 7:59:10 PM",
-    "price": "22"
-  },
-  {
-    "id": 1,
-    "timestamp": "03/29/2022 8:02:51 PM",
-    "price": "22"
-  },
-  {
-    "id": 1,
-    "timestamp": "03/29/2022 8:17:24 PM",
-    "name": "name2",
-    "description": "description2",
-    "code": "code2",
-    "url": "url2",
-    "price": "price2",
-    "stock": "stock2"
+    "timestamp": "03/29/2022 10:20:08 PM",
+    "name": "name4",
+    "description": "description4",
+    "code": "code4",
+    "url": "url4",
+    "price": "price4",
+    "stock": "stock4"
   },
   {
     "id": 2,
-    "timestamp": "03/29/2022 8:18:13 PM",
-    "name": "name2",
-    "description": "description2",
-    "code": "code2",
-    "url": "url2",
-    "price": "price2",
-    "stock": "stock2"
+    "timestamp": "03/29/2022 10:20:26 PM",
+    "name": "name4",
+    "description": "description4",
+    "code": "code4",
+    "url": "url4",
+    "price": "price4",
+    "stock": "stock4"
+  },
+  {
+    "id": 3,
+    "timestamp": "03/29/2022 10:20:26 PM",
+    "name": "name4",
+    "description": "description4",
+    "code": "code4",
+    "url": "url4",
+    "price": "price4",
+    "stock": "stock4"
   }
 ]

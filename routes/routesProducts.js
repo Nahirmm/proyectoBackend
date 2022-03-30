@@ -7,7 +7,6 @@ const newCcontainerProducts = new containerProducts()
 
 routesProducts.get('/', async (req, res) => {
     const allProducts =  await newCcontainerProducts.getAllProducts()
-    console.log(allProducts)
     res.json(allProducts)
     })
 
@@ -26,7 +25,8 @@ routesProducts.get('/', async (req, res) => {
     })
 
     .put('/:id', async (req, res) => {
-        const updateProduct = await newCcontainerProducts.updateProduct(req.params.id)
+        const updateProduct = await newCcontainerProducts.updateProduct(req.body, req.params.id)
+
         res.json(updateProduct)
     })
 
@@ -35,4 +35,4 @@ routesProducts.get('/', async (req, res) => {
         res.json(deleteProduct)
     })
 
-    module.exports = routesProducts
+module.exports = routesProducts

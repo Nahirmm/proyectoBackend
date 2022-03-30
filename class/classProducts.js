@@ -13,7 +13,6 @@ class productsClass {
             const productsList = await fs.readFile(this.route)
             if(productsList.toString() != ''){
                 this.products = JSON.parse(productsList)
-                console.log(this.products)
             }
             return this.products
         }catch(error){
@@ -27,6 +26,10 @@ class productsClass {
 
     async saveProduct(data){
         try{
+            const loadedProduct = await this.getAllProducts()
+            if (loadedProduct.length != 0) {
+                
+            }
             this.id++
             const newProduct = {
                 id: this.id, 
@@ -38,7 +41,6 @@ class productsClass {
                 price: data.price,
                 stock: data.stock
             }
-            const loadedProduct = await this.getAllProducts()
             loadedProduct.push(newProduct)
             await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
         }catch(error){
@@ -58,6 +60,7 @@ class productsClass {
 
     async updateProduct(data, idProduct){
         try {
+            const loadedProduct = await this.getAllProducts()
             const updateProduct = {
                 id: idProduct, 
                 timestamp: moment().format('L LTS'),
@@ -68,9 +71,9 @@ class productsClass {
                 price: data.price,
                 stock: data.stock
             }
-            const updateI = getAllProducts().findIndex((prod) => prod.id == idProduct)
-            this.products[updateI] = updateProduct
-            await fs.writeFile(this.route, JSON.stringify(this.products ,null, 2))
+            const updateI = loadedProduct.findIndex((prod) => prod.id === parseInt(idProduct))
+            loadedProduct[updateI] = updateProduct
+            await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
             return updateProduct;
         } catch(error){
             console.log("Error " + error)
@@ -79,13 +82,14 @@ class productsClass {
     
     async deleteProduct(idProduct){
         try {
-            const deleteI = getAllProducts().findIndex((prod) => prod.id === idProduct)
+            const loadedProduct = await this.getAllProducts()
+            const deleteI = loadedProduct.findIndex((prod) => prod.id === parseInt(idProduct))
 
             if (deleteI === -1 ){
                 return -1
             } else{
-                const deleteData = this.products.splice(deleteI,1)
-                await fs.writeFile(this.route, JSON.stringify(deleteData ,null, 2))
+                const deleteData = loadedProduct.splice(deleteI,1)
+                await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
                 return deleteData
             }
         }catch (error) {
