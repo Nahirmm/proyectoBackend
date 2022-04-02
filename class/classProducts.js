@@ -2,10 +2,10 @@ const fs = require('fs').promises
 const moment = require('moment')
 
 class productsClass {
-    constructor(){
-        this.route= './db/products.txt'
-        this.products= []
-        this.id = 0
+    constructor() {
+        this.route = './db/products.txt'
+        this.products = []
+        this.id = 1
     }
 
     async getAllProducts(){
@@ -13,6 +13,7 @@ class productsClass {
             const productsList = await fs.readFile(this.route)
             if(productsList.toString() != ''){
                 this.products = JSON.parse(productsList)
+                this.id = this.products[this.products.length -1].id +1
             }
             return this.products
         }catch(error){
@@ -24,13 +25,13 @@ class productsClass {
         }
     }
 
+    async newID() {
+
+    }
+
     async saveProduct(data){
         try{
             const loadedProduct = await this.getAllProducts()
-            if (loadedProduct.length != 0) {
-                
-            }
-            this.id++
             const newProduct = {
                 id: this.id, 
                 timestamp: moment().format('L LTS'),
@@ -45,8 +46,8 @@ class productsClass {
             await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
         }catch(error){
             console.log("Error " + error)
-            }
         }
+    }
 
     async getByIdProduct(idProduct){
 

@@ -1,42 +1,19 @@
 [
   {
-    "id": 3,
-    "timestamp": "03/29/2022 9:50:43 PM",
-    "name": "name4",
-    "description": "description4",
-    "code": "code4",
-    "url": "url4",
-    "price": "price4",
-    "stock": "stock4"
-  },
-  {
     "id": 1,
-    "timestamp": "03/29/2022 10:20:08 PM",
-    "name": "name4",
-    "description": "description4",
-    "code": "code4",
-    "url": "url4",
-    "price": "price4",
-    "stock": "stock4"
+    "timestamp": "04/02/2022 9:43:04 AM",
+    "name": "hola"
   },
   {
     "id": 2,
-    "timestamp": "03/29/2022 10:20:26 PM",
-    "name": "name4",
-    "description": "description4",
-    "code": "code4",
-    "url": "url4",
-    "price": "price4",
-    "stock": "stock4"
+    "timestamp": "04/02/2022 9:43:09 AM"
   },
   {
     "id": 3,
-    "timestamp": "03/29/2022 10:20:26 PM",
-    "name": "name4",
-    "description": "description4",
-    "code": "code4",
-    "url": "url4",
-    "price": "price4",
-    "stock": "stock4"
+    "timestamp": "04/02/2022 9:43:32 AM"
+  },
+  {
+    "id": 4,
+    "timestamp": "04/02/2022 9:43:32 AM"
   }
 ]
