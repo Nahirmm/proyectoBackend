@@ -92,11 +92,9 @@ class cartClass {
             const cartById = loadedCart.find(cart => cart.id == parseInt(idCart))
             if(cartById){
                 const cartIndex = loadedCart.findIndex((cart) => cart.id === parseInt(idCart))
-                // const productsFilter = cartById.products.filter(prod => prod.id != idProduct)
-                // cartById.products
                 const deleteI = cartById.products.findIndex((prod) => prod.id === parseInt(idProduct))
                 if (deleteI != -1 ){
-                    const deleteData = cartById.products.splice(deleteI,1)
+                    const deleteData = cartById.products.splice(deleteI,1) //no uso el deleteData, lo borro?
                     loadedCart[cartIndex] = cartById
                     await fs.writeFile(this.route, JSON.stringify(loadedCart ,null, 2))
                     return cartById

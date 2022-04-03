@@ -8,18 +8,30 @@ const containerProducts = require('../class/classProducts')
 const newContainerProducts = new containerProducts()
 
 routesCart.post('/', async (req, res) => {
-    const newCart = await newContainerCart.createCart() 
-    res.json(newCart)
+    try {
+        const newCart = await newContainerCart.createCart() 
+        res.json(newCart)
+    }catch (error) {
+        res.status(500).json({error: error.message})
+    }
 })
 
 routesCart.delete('/:id', async (req, res) => {
-    const deleteCart = await newContainerCart.deleteCart(req.params.id)
-    res.json(deleteCart)
+    try {
+        const deleteCart = await newContainerCart.deleteCart(req.params.id)
+        res.json(deleteCart)
+    }catch (error) {
+        res.status(500).json({error: error.message})
+    }
 })
 
 routesCart.get('/:id/products', async (req, res) => {
-    const productsInCartById = await newContainerCart.listProductsInCart(req.params.id)
-    res.json(productsInCartById)
+    try {
+        const productsInCartById = await newContainerCart.listProductsInCart(req.params.id)
+        res.json(productsInCartById)
+    }catch (error) {
+        res.status(500).json({error: error.message})
+    }
 })
 
 routesCart.post('/:id/products', async (req, res) => {

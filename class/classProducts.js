@@ -13,7 +13,11 @@ class productsClass {
             const productsList = await fs.readFile(this.route)
             if(productsList.toString() != ''){
                 this.products = JSON.parse(productsList)
-                this.id = this.products[this.products.length -1].id +1
+                if(this.products.length > 0){
+                    this.id = this.products[this.products.length -1].id +1
+                }else {
+                    this.id = 1
+                }
             }
             return this.products
         }catch(error){
@@ -21,12 +25,8 @@ class productsClass {
                  fs.writeFile(this.route,'')
                  return []
             }
-            console.log("Error " + error)
+            console.log("Error getAllProducts " + error)
         }
-    }
-
-    async newID() {
-
     }
 
     async saveProduct(data){
@@ -44,13 +44,13 @@ class productsClass {
             }
             loadedProduct.push(newProduct)
             await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
+                
         }catch(error){
-            console.log("Error " + error)
+            console.log("Error saveProducts " + error)
         }
     }
 
     async getByIdProduct(idProduct){
-
         try {
             const loadedProduct = await this.getAllProducts()
             return loadedProduct.find(prod => prod.id == parseInt(idProduct))
@@ -85,10 +85,7 @@ class productsClass {
         try {
             const loadedProduct = await this.getAllProducts()
             const deleteI = loadedProduct.findIndex((prod) => prod.id === parseInt(idProduct))
-
-            if (deleteI === -1 ){
-                return -1
-            } else{
+            if (deleteI != -1){
                 const deleteData = loadedProduct.splice(deleteI,1)
                 await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
                 return deleteData
