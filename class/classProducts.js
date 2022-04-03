@@ -14,7 +14,7 @@ class productsClass {
             if(productsList.toString() != ''){
                 this.products = JSON.parse(productsList)
                 if(this.products.length > 0){
-                    this.id = this.products[this.products.length -1].id +1
+                    this.id = parseInt(this.products[this.products.length -1].id) +1
                 }else {
                     this.id = 1
                 }
@@ -77,7 +77,7 @@ class productsClass {
             await fs.writeFile(this.route, JSON.stringify(loadedProduct ,null, 2))
             return updateProduct;
         } catch(error){
-            console.log("Error " + error)
+            console.log("Error in updateProducts " + error)
         }
     }
     

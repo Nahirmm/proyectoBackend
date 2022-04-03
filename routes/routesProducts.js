@@ -4,6 +4,9 @@ const routesProducts = express.Router()
 const containerProducts = require('../class/classProducts')
 const newContainerProducts = new containerProducts()
 
+const admin = require('../middleware/admin')
+const adminRol = true
+
 routesProducts.get('/', async (req, res) => {
     try {
         const allProducts =  await newContainerProducts.getAllProducts()
@@ -26,7 +29,7 @@ routesProducts.get('/:id', async (req, res) => {
     }
 })
 
-routesProducts.post('/', async (req, res) => {
+routesProducts.post('/', admin(adminRol), async (req, res) => {
     try {
         const newProduct = await newContainerProducts.saveProduct(req.body) 
         res.json(newProduct)
@@ -35,7 +38,7 @@ routesProducts.post('/', async (req, res) => {
     }
 })
 
-routesProducts.put('/:id', async (req, res) => {
+routesProducts.put('/:id', admin(adminRol), async (req, res) => {
     try {
         const updateProduct = await newContainerProducts.updateProduct(req.body, req.params.id)
         res.json(updateProduct)
@@ -44,7 +47,7 @@ routesProducts.put('/:id', async (req, res) => {
     }
 })
 
-routesProducts.delete('/:id', async (req, res) => {
+routesProducts.delete('/:id', admin(adminRol), async (req, res) => {
     try {
         const deleteProduct = await newContainerProducts.deleteProduct(req.params.id)
         res.json(deleteProduct)
