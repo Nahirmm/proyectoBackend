@@ -14,7 +14,11 @@ class cartClass {
             const cartList = await fs.readFile(this.route)
             if(cartList.toString() != ''){
                 this.cart = JSON.parse(cartList)
-                this.id = this.cart[this.cart.length -1].id +1
+                if(this.cart.length > 0){
+                    this.id = parseInt(this.cart[this.cart.length -1].id) +1
+                }else {
+                    this.id = 1
+                }
             }
             return this.cart
         }catch(error){
@@ -22,7 +26,7 @@ class cartClass {
                  fs.writeFile(this.route,'')
                  return []
             }
-            console.log("Error " + error)
+            console.log("Error in getAllCart " + error)
         }
     }
 
@@ -38,7 +42,7 @@ class cartClass {
             await fs.writeFile(this.route, JSON.stringify(loadedCart ,null, 2))
             return newCart
         }catch(error){
-            console.log("Error " + error)
+            console.log("Error in createCart " + error)
         }
     }
 
@@ -46,16 +50,13 @@ class cartClass {
         try {
             const loadedCart = await this.getAllCart()
             const deleteI = loadedCart.findIndex((cart) => cart.id === parseInt(idCart))
-
-            if (deleteI === -1 ){
-                return -1
-            } else{
+            if (deleteI != -1 ){
                 const deleteData = loadedCart.splice(deleteI,1)
                 await fs.writeFile(this.route, JSON.stringify(loadedCart ,null, 2))
                 return deleteData
-            }
+            } 
         }catch (error) {
-            console.log("Error " + error)
+            console.log("Error in deleteCart " + error)
         }
     }
 
@@ -65,7 +66,7 @@ class cartClass {
             const cartById = loadedCart.find(cart => cart.id == parseInt(idCart))
             return cartById.products
         }catch (error) {
-            console.log("Error " + error)
+            console.log("Error in listProductsInCart " + error)
         }
     }
 
@@ -80,7 +81,6 @@ class cartClass {
             }else {
                 throw new Error("No se encontró el carrito")
             }
-            
         }catch (error) {
             throw new Error(error.message)
         }
@@ -94,7 +94,7 @@ class cartClass {
                 const cartIndex = loadedCart.findIndex((cart) => cart.id === parseInt(idCart))
                 const deleteI = cartById.products.findIndex((prod) => prod.id === parseInt(idProduct))
                 if (deleteI != -1 ){
-                    const deleteData = cartById.products.splice(deleteI,1) //no uso el deleteData, lo borro?
+                    cartById.products.splice(deleteI,1) 
                     loadedCart[cartIndex] = cartById
                     await fs.writeFile(this.route, JSON.stringify(loadedCart ,null, 2))
                     return cartById

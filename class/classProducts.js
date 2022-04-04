@@ -63,7 +63,7 @@ class productsClass {
         try {
             const loadedProduct = await this.getAllProducts()
             const updateProduct = {
-                id: idProduct, 
+                id: parseInt(idProduct), 
                 timestamp: moment().format('L LTS'),
                 name: data.name,
                 description: data.description,
