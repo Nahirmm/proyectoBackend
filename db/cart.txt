@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "timestamp": "04/07/2022 6:52:16 PM",
+    "products": [
+      {
+        "id": 1,
+        "timestamp": "04/07/2022 6:51:54 PM",
+        "name": "name",
+        "description": "description",
+        "code": "code",
+        "url": "url",
+        "price": "price",
+        "stock": "stock"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "timestamp": "04/07/2022 6:52:17 PM",
+    "products": [
+      {
+        "id": 5,
+        "timestamp": "04/07/2022 6:51:58 PM",
+        "name": "name",
+        "description": "description",
+        "code": "code",
+        "url": "url",
+        "price": "price",
+        "stock": "stock"
+      },
+      {
+        "id": 3,
+        "timestamp": "04/07/2022 6:51:56 PM",
+        "name": "name",
+        "description": "description",
+        "code": "code",
+        "url": "url",
+        "price": "price",
+        "stock": "stock"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "timestamp": "04/07/2022 6:52:18 PM",
+    "products": []
+  }
+]
