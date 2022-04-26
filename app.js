@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const routesProducts = require('./routes/routesProducts')
-const routesCart = require('./routes/routesCart')
+const { routesProducts, routesCart} = require('./src/api/routes/routesFS')
+
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())

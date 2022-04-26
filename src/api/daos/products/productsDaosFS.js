@@ -1,5 +1,5 @@
 const classFS = require('../../class/classFS')
-const classFSProducts = new classFS('./db/products.txt')
+const classFSProducts = new classFS('./src/db/products.txt')
 const moment = require('moment')
 
 class productsDaoClass {

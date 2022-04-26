@@ -58,5 +58,15 @@
     "url": "url",
     "price": "price",
     "stock": "stock"
+  },
+  {
+    "id": 8,
+    "timestamp": "04/26/2022 2:09:19 PM",
+    "name": "nameNew",
+    "description": "description",
+    "code": "code",
+    "url": "url",
+    "price": "price",
+    "stock": "stock"
   }
 ]

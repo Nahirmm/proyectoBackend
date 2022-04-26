@@ -1,5 +1,5 @@
 const classFS = require('../../class/classFS')
-const classFSCart = new classFS('./db/cart.txt')
+const classFSCart = new classFS('./src/db/cart.txt')
 const moment = require('moment')
 
 
