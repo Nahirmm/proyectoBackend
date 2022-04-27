@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
 
 const productsSchema = new mongoose.Schema({
     timestamp: {type: Date, default: Date.now, required: true},
-    name:  {type: Date, required: true},
+    name:  {type: String, required: true},
     description: {type: String, required: true},
     code: {type: String, required: true},
     url: {type: String, required: true},
@@ -12,10 +13,10 @@ const productsSchema = new mongoose.Schema({
 
 const cartSchema = new mongoose.Schema({
     timestamp: {type: Date, default: Date.now, required: true},
-    products: []
+    products: [{type: Schema.Types.ObjectId, ref: 'products'}]
 })
 
 const productsMongo = mongoose.model('products', productsSchema);
 const cartMongo = mongoose.model('cart', cartSchema);
 
-module.exports = {productsMongo, cartMongo};
+module.exports = { productsMongo, cartMongo }

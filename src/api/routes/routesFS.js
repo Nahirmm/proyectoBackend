@@ -23,5 +23,5 @@ routesCart.post('/:id/products', cartsControllers.addProductInCart)
 routesCart.delete('/:idcart/products/:idprod', cartsControllers.deleteProductInCart)
 
 
-module.exports = { routesProducts, routesCart }
+module.exports = { routesProductsFS, routesCartFS }
 

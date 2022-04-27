@@ -1,14 +1,23 @@
 const express = require('express')
 const app = express()
-const { routesProducts, routesCart} = require('./src/api/routes/routesFS')
-
+require('dotenv').config()
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
-app.use('/api/products', routesProducts)
-app.use('/api/cart', routesCart)
+if(process.env.ambiente === "fs"){
 
+    const { routesProductsFS, routesCartFS} = require('./src/api/routes/routesFS')
+    app.use('/api/products', routesProductsFS)
+    app.use('/api/cart', routesCartFS)
+}
+
+if(process.env.ambiente === "mongo"){
+
+    const { routesProductsMongo, routesCartMongo} = require('./src/api/routes/routesMongo')
+    app.use('/api/products', routesProductsMongo)
+    app.use('/api/cart', routesCartMongo)
+}
 
 app.all('*', (req, res) => {
     res.status(404).json({

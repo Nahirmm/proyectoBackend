@@ -7,12 +7,6 @@ class classMongo {
         this.schema = schema
     }
 
-    // mongoose.connect("mongodb://localhost:27017/mibase", {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true
-    // });
-    // console.log("Conectado a MongoDB");
-
     async getAll(){
         try{
             const list = await this.schema.find({})

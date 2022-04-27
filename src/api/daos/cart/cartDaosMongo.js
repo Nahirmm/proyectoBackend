@@ -49,7 +49,8 @@ class cartDaoClass {
     async addProductInCart(idCart, product) {
         try {
             const cartById = await classMongoCart.getById(idCart)
-            cartById.products.save(product)
+            cartById.products.push(product)
+            cartById.save()
             const cartUpdated = await classMongoCart.update(cartById, idCart)
             return cartUpdated
 
