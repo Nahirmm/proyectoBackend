@@ -13,7 +13,7 @@ const productsSchema = new mongoose.Schema({
 
 const cartSchema = new mongoose.Schema({
     timestamp: {type: Date, default: Date.now, required: true},
-    products: [{type: Schema.Types.ObjectId, ref: 'products'}]
+    products: [{type: Schema.Types.Array, ref: 'products'}]
 })
 
 const productsMongo = mongoose.model('products', productsSchema);

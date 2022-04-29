@@ -22,8 +22,7 @@ class cartDaoClass {
                 timestamp: moment().format('L LTS'),
                 products: []
             }
-            await classMongoCart.save(newCart)
-            return newCart
+            return await classMongoCart.save(newCart)
         }catch(error){
             console.log("Error in createCart " + error)
         }
@@ -50,7 +49,6 @@ class cartDaoClass {
         try {
             const cartById = await classMongoCart.getById(idCart)
             cartById.products.push(product)
-            cartById.save()
             const cartUpdated = await classMongoCart.update(cartById, idCart)
             return cartUpdated
 

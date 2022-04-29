@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 
+const mongoose = require('mongoose')
+const urlMongo= process.env.DB
+
+
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
@@ -14,9 +19,20 @@ if(process.env.ambiente === "fs"){
 
 if(process.env.ambiente === "mongo"){
 
+    mongoose.connect(urlMongo, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(data => console.log("Conectado a MongoDB"))
+
     const { routesProductsMongo, routesCartMongo} = require('./src/api/routes/routesMongo')
     app.use('/api/products', routesProductsMongo)
     app.use('/api/cart', routesCartMongo)
+}
+
+if (process.env.ambiente === "firebase") {
+    const { routesProductsFirebase, routesCartFirebase } = require('./src/api/routes/routesFirebase')
+    app.use('/api/products', routesProductsFirebase)
+    app.use('/api/cart', routesCartFirebase)
 }
 
 app.all('*', (req, res) => {
