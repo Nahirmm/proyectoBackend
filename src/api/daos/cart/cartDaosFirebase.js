@@ -8,9 +8,21 @@ class cartDaoClass {
         this.cart = []
     }
 
+    async getAllCarts() {
+        try {
+            return await classFirebaseCart.getAll().docs.map(doc => ({
+                id: doc.id,
+                timestamp: doc.data().timestamp,
+                products: doc.data().products
+            }))
+        } catch (error) {
+            console.log("Error in getAllCarts " + error)
+        }
+
+    }
+
     async createCart() {
         try{
-            await classFirebaseCart.getAll()
             const newCart = {
                 timestamp: moment().format('L LTS'),
                 products: []
@@ -32,8 +44,7 @@ class cartDaoClass {
 
     async listProductsInCart(idCart) {
         try {
-            const loadedCart = await classFirebaseCart.getAll()
-            const cartById = loadedCart.find(cart => cart.id == parseInt(idCart))
+            const cartById = await classFirebaseCart.getById(idCart)
             return cartById.products
         }catch (error) {
             console.log("Error in listProductsInCart " + error)
@@ -41,17 +52,12 @@ class cartDaoClass {
     }
 
     async addProductInCart(idCart, product) {
-        try {
-            const loadedCart = await classFirebaseCart.getAll()
-            console.log(loadedCart)
-            const cartById = loadedCart.find(cart => cart.id == parseInt(idCart))
-            if (cartById) {
-                cartById.products.push(product)
-                await classFirebaseCart.update(cartById, idCart)
-                return cartById
-            }else {
-                throw new Error("No se encontró el carrito")
-            }
+        try {         
+            const cartById = await classFirebaseCart.getById(idCart)
+            cartById.products.push(product)
+            console.log(cartById)
+            const cartUpdated = await classFirebaseCart.update(cartById, idCart)
+            return cartUpdated
         }catch (error) {
             throw new Error(error.message)
         }
@@ -59,19 +65,10 @@ class cartDaoClass {
     
     async deleteProductInCart(idCart, idProduct) {
         try{
-            const loadedCart = await classFirebaseCart.getAll()
-            const cartById = loadedCart.find(cart => cart.id == parseInt(idCart))
-            if(cartById){
-                const cartIndex = loadedCart.findIndex((cart) => cart.id === parseInt(idCart))
-                const deleteI = cartById.products.findIndex((prod) => prod.id === parseInt(idProduct))
-                if (deleteI != -1 ){
-                    cartById.products.splice(deleteI,1) 
-                    await classFirebaseCart.update(cartById, idCart)
-                    return cartById
-                }
-            }else {
-                throw new Error("No se encontró el carrito")
-            }
+            const cartById = await classFirebaseCart.getById(idCart)
+            cartById.products.delete(idProduct)
+            const cartUpdated = await classMongoCart.update(cartById, idCart)
+            return cartUpdated
 
         }catch (error) {
             throw new Error(error.message)

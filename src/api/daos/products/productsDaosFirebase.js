@@ -9,7 +9,16 @@ class productsDaoClass {
 
     async getAllProducts(){
         try{
-            return await classFirebaseProducts.getAll()
+            return await (await classFirebaseProducts.getAll()).docs.map(doc => ({
+                id: doc.id,
+                timestamp: doc.data().timestamp,
+                name: doc.data().name,
+                description: doc.data().description,
+                code: doc.data().code,
+                url: doc.data().url,
+                price: doc.data().price,
+                stock: doc.data().stock,
+            }))
         }catch(error){
             console.log("Error getAllProducts " + error)
         }
@@ -17,7 +26,6 @@ class productsDaoClass {
 
     async saveProduct(data){
         try{
-            await classFirebaseProducts.getAll()
             const newProduct = {
                 timestamp: moment().format('L LTS'),
                 name: data.name,

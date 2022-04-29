@@ -38,7 +38,7 @@ class classFirebase {
 
     async getById(id){
         try {
-            const loadedEntityById = await db.collection(this.coleccion).doc(id).get()
+            const loadedEntityById = await (await db.collection(this.coleccion).doc(id).get()).data()
             return loadedEntityById
         } catch(error){
             console.log("Error in getById " + error)
