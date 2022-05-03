@@ -56,7 +56,7 @@ class classFirebase {
     
     async delete(id){
         try {
-            const deleteEntity = await db.collection(this.coleccion).doc(id).delete()
+            const deleteEntity = await db.collection(this.coleccion).doc(id).delete({id: id})
             return deleteEntity
         }catch (error) {
             console.log("Error in delete " + error)

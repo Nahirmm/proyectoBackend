@@ -55,9 +55,8 @@ class cartDaoClass {
         try {         
             const cartById = await classFirebaseCart.getById(idCart)
             cartById.products.push(product)
-            console.log(cartById)
-            const cartUpdated = await classFirebaseCart.update(cartById, idCart)
-            return cartUpdated
+            await classFirebaseCart.update(cartById, idCart)
+            return cartById
         }catch (error) {
             throw new Error(error.message)
         }
@@ -67,7 +66,8 @@ class cartDaoClass {
         try{
             const cartById = await classFirebaseCart.getById(idCart)
             cartById.products.delete(idProduct)
-            const cartUpdated = await classMongoCart.update(cartById, idCart)
+            console.log(cartById)
+            const cartUpdated = await classFirebaseCart.update(cartById, idCart)
             return cartUpdated
 
         }catch (error) {
