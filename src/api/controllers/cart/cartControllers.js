@@ -1,7 +1,7 @@
-const containerCart = require('../../daos/cart/cartDaosMongo')
+const containerCart = require('../../daos/cart/cartDaos')
 const newContainerCart = new containerCart()
 
-const containerProducts = require('../../daos/products/productsDaosMongo')
+const containerProducts = require('../../daos/products/productsDaos')
 const newContainerProducts = new containerProducts()
 
 class cartControllers {

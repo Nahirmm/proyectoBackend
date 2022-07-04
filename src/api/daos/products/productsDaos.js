@@ -1,5 +1,6 @@
-const classFirebase = require('../../class/classFirebase')
-const classFirebaseProducts = new classFirebase('products')
+const productsModel = require ('../../models/mongo').productsMongo
+const classMongo = require('../../class/class')
+const classMongoProducts = new classMongo(productsModel) 
 const moment = require('moment')
 
 class productsDaoClass {
@@ -9,16 +10,7 @@ class productsDaoClass {
 
     async getAllProducts(){
         try{
-            return await (await classFirebaseProducts.getAll()).docs.map(doc => ({
-                id: doc.id,
-                timestamp: doc.data().timestamp,
-                name: doc.data().name,
-                description: doc.data().description,
-                code: doc.data().code,
-                url: doc.data().url,
-                price: doc.data().price,
-                stock: doc.data().stock,
-            }))
+            return await classMongoProducts.getAll()
         }catch(error){
             console.log("Error getAllProducts " + error)
         }
@@ -35,9 +27,8 @@ class productsDaoClass {
                 price: data.price,
                 stock: data.stock
             }
-            await classFirebaseProducts.save(newProduct)
+            await classMongoProducts.save(newProduct) 
             return newProduct
-                
         }catch(error){
             console.log("Error saveProducts " + error)
         }
@@ -45,7 +36,7 @@ class productsDaoClass {
 
     async getByIdProduct(idProduct){
         try {
-            return await classFirebaseProducts.getById(idProduct)
+            return await classMongoProducts.getById(idProduct)
         } catch(error){
             console.log("Error in getByIdProduct " + error)
         }
@@ -62,7 +53,7 @@ class productsDaoClass {
                 price: data.price,
                 stock: data.stock
             }
-            await classFirebaseProducts.update(updateProduct, idProduct)
+            await classMongoProducts.update(updateProduct, idProduct)
             return updateProduct;
         } catch(error){
             console.log("Error in updateProducts " + error)
@@ -71,7 +62,7 @@ class productsDaoClass {
     
     async deleteProduct(idProduct){
         try {
-            await classFirebaseProducts.delete(idProduct)
+            await classMongoProducts.delete(idProduct)
         }catch (error) {
             console.log("Error " + error)
         }

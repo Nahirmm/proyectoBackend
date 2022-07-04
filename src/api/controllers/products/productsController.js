@@ -1,4 +1,4 @@
-const containerProducts = require('../../daos/products/productsDaosFirebase')
+const containerProducts = require('../../daos/products/productsDaos')
 const newContainerProducts = new containerProducts()
 
 class productsControllers {
@@ -18,7 +18,7 @@ class productsControllers {
             if (productById != undefined) {
                 return res.status(200).json(productById)
             } else {
-                return res.status(404).json({ error : 'Producto no encontrado' }) //ver si esto va
+                return res.status(404).json({ error : 'Producto no encontrado' })
             }
         }catch (error) {
             res.status(500).json({error: error.message})
@@ -51,7 +51,6 @@ class productsControllers {
             res.status(500).json({error: error.message})
         }
     }
-
 }
 
 

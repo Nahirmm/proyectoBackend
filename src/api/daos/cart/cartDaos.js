@@ -1,5 +1,5 @@
 const cartModel = require ('../../models/mongo').cartMongo
-const classMongo = require('../../class/classMongo')
+const classMongo = require('../../class/class')
 const classMongoCart = new classMongo(cartModel) 
 const moment = require('moment')
 
