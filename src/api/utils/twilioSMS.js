@@ -9,13 +9,13 @@ const sendSMS = async () =>  {
     
     try {
        const message = await client.messages.create({
-          body: 'Hola soy Tulio y me gusta romper las pelotas con la configuración',
-          from: process.env.CELUTWILIO,
-          to: process.env.MICELU
+          body: 'Hola desde twilio!',
+          from: process.env.TWILIOPHONE,
+          to: process.env.MYPHONE
          })
          console.log(message)
     } catch (error) {
-       console.log("Todo ok de momento")
+       console.log(error)
     }
 }
 

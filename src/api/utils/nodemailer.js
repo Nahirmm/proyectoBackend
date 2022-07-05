@@ -1,12 +1,12 @@
 const {createTransport} = require('nodemailer')
 require('dotenv').config()
-
-const MAIL = process.env.TEST_MAIL
-const PASSW = process.env.PASS
-
 const sendEmail = async () =>  {
+    
+    const MAIL = process.env.TEST_MAIL
+    const PASSW = process.env.PASS
+
     const transporter = createTransport({
-        host: 'gmail',
+        service: 'gmail',
         port: 587,
         auth: {
             user: MAIL,
@@ -15,8 +15,8 @@ const sendEmail = async () =>  {
     })
 
     const mailOptions = {
-        from: 'Servidor Node.js',
-        to: MAIL,
+        from: MAIL,
+        to: 'fmc2792@gmail.com',
         subject: 'Mail de prueba desde Node.js',
         html: '<h1 style="color: blue;">Contenido de prueba desde <span style="color:green">Node.js con Nodemailer</span></h1>'
     }

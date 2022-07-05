@@ -15,6 +15,8 @@ const { routesProducts } = require('./src/api/routes/routesProducts')
 const { routesCart} = require('./src/api/routes/routesCart')
 const { routesAuth } = require('./src/api/routes/routes')
 const sendEmail = require('./src/api/utils/nodemailer.js')
+const sendSMS = require('./src/api/utils/twilioSMS.js')
+const sendWhatsapp = require('./src/api/utils/twilioWsp.js')
 
 app.set('view engine', 'ejs')
 app.set('views', './src/views')
@@ -51,5 +53,7 @@ app.all('*', (req, res) => {
 })
 
 //sendEmail()
+//sendSMS()
+//sendWhatsapp()
     
 module.exports = app
