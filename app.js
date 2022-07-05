@@ -14,6 +14,7 @@ passport.use('signup', strategySignup)
 const { routesProducts } = require('./src/api/routes/routesProducts')
 const { routesCart} = require('./src/api/routes/routesCart')
 const { routesAuth } = require('./src/api/routes/routes')
+const sendEmail = require('./src/api/utils/nodemailer.js')
 
 app.set('view engine', 'ejs')
 app.set('views', './src/views')
@@ -48,5 +49,7 @@ app.all('*', (req, res) => {
         descripcion: `Ruta: ${req.originalUrl} Metodo: ${req.method} no implementada`
     })
 })
+
+//sendEmail()
     
 module.exports = app
