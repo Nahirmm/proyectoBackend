@@ -1,3 +1,5 @@
+const logger = require('./winston');
+
 const accountSid = process.env.ACCOUNTSID ; 
 const authToken = process.env.AUTHTOKEN; 
 const client = require('twilio')(accountSid, authToken); 
@@ -9,7 +11,7 @@ const sendWhatsapp = () => {
             body: 'Probando mandar wsp desde Twilio', 
             to: 'whatsapp:'+ process.env.MYPHONEWSP 
            }) 
-          .then(message => console.log(message.sid)) 
+          .then(message => logger.data(message.sid)) 
           .done();
 }
 

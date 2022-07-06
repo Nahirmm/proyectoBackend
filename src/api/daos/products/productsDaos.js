@@ -2,6 +2,7 @@ const productsModel = require ('../../models/mongo').productsMongo
 const classMongo = require('../../class/class')
 const classMongoProducts = new classMongo(productsModel) 
 const moment = require('moment')
+const logger = require('../../utils/winston')
 
 class productsDaoClass {
     constructor() {
@@ -12,7 +13,7 @@ class productsDaoClass {
         try{
             return await classMongoProducts.getAll()
         }catch(error){
-            console.log("Error getAllProducts " + error)
+            logger.error("Error getAllProducts " + error)
         }
     }
 
@@ -30,7 +31,7 @@ class productsDaoClass {
             await classMongoProducts.save(newProduct) 
             return newProduct
         }catch(error){
-            console.log("Error saveProducts " + error)
+            logger.error("Error saveProducts " + error)
         }
     }
 
@@ -38,7 +39,7 @@ class productsDaoClass {
         try {
             return await classMongoProducts.getById(idProduct)
         } catch(error){
-            console.log("Error in getByIdProduct " + error)
+            logger.error("Error in getByIdProduct " + error)
         }
     }
 
@@ -56,7 +57,7 @@ class productsDaoClass {
             await classMongoProducts.update(updateProduct, idProduct)
             return updateProduct;
         } catch(error){
-            console.log("Error in updateProducts " + error)
+            logger.error("Error in updateProducts " + error)
         }
     }
     
@@ -64,7 +65,7 @@ class productsDaoClass {
         try {
             await classMongoProducts.delete(idProduct)
         }catch (error) {
-            console.log("Error " + error)
+            logger.error("Error " + error)
         }
     }
 }

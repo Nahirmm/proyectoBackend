@@ -3,6 +3,7 @@ const Strategy = require('passport-local').Strategy
 const {User} = require('../models/user.js')
 const {isValidPassword} = require('../utils/bcrypt.js')
 const {createHash} = require('../utils/bcrypt.js')
+const logger = require('../utils/winston.js')
 
 
 passport.serializeUser((user, done) => {
@@ -19,11 +20,11 @@ const strategyLogin = new Strategy(
       User.findOne({ username }, (err, user) => {
         if (err) return done(err);
         if (!user) {
-          console.log('Usuario no encontrado: ' + username);
+          logger.warn('Usuario no encontrado: ' + username);
           return done(null, false);
         }
         if (!isValidPassword(user, password)) {
-          console.log('Contraseña invalida');
+          logger.warn('Contraseña invalida');
           return done(null, false);
         }
         return done(null, user);
@@ -38,12 +39,12 @@ const strategySignup = new Strategy({
         User.findOne({ 'username': username }, function (err, user) {
    
         if (err) {
-          console.log('Error in SingUp: ' + err);
+          logger.error('Error in SingUp: ' + err);
           return done(err);
         }
         
         if (user) {
-            console.log('El usuario ya existe');
+            logger.info('El usuario ya existe');
             return done(null, false)
         }
    
@@ -60,11 +61,11 @@ const strategySignup = new Strategy({
         
         User.create(newUser, (err, userWithId) => {
             if (err) {
-              console.log('Error al guardar el usuario: ' + err);
+              logger.error('Error al guardar el usuario: ' + err);
               return done(err);
             }
-            console.log(user)
-            console.log('El usuario se registró correctamente');
+            logger.data(JSON.stringify(user))
+            logger.info('El usuario se registró correctamente');
             return done(null, userWithId);
         });
     });

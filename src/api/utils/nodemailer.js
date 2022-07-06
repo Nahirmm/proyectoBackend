@@ -1,4 +1,5 @@
 const {createTransport} = require('nodemailer')
+const logger = require('./winston')
 require('dotenv').config()
 const sendEmail = async () =>  {
     
@@ -16,13 +17,13 @@ const sendEmail = async () =>  {
 
     const mailOptions = {
         from: MAIL,
-        to: 'fmc2792@gmail.com',
+        to: 'nanu-@live.com',
         subject: 'Mail de prueba desde Node.js',
         html: '<h1 style="color: blue;">Contenido de prueba desde <span style="color:green">Node.js con Nodemailer</span></h1>'
     }
 
     const info = await transporter.sendMail(mailOptions)
-    console.log(info)
+    logger.data(JSON.stringify(info, null, ' '))
 }
 
 module.exports = sendEmail

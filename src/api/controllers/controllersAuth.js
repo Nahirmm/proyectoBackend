@@ -1,26 +1,26 @@
-
+const logger = require('../utils/winston')
 
 class controllersAuth {
 
     async products (req, res) {
-        try {
-            console.log('Se accedió correctamente a productos')
+        try { 
+            logger.info('Se accedió correctamente a productos')
             res.render('products', {
                 user: req.user
             })
         } catch (error) {
-            console.log('Error en productos: ' + error)
+            logger.error('Error en productos: ' + error)
             res.send('Error')
         }
     }
 
     async login (req, res)  {
         try {
-            console.log('Accedió correctamente a /login')
+            logger.info('Accedió correctamente a /login')
             if (req.isAuthenticated()) return res.redirect('/auth')
             res.render('login')
         } catch (error) {
-            console.log('Error en /login: ' + error)
+            logger.error('Error en /login: ' + error)
             res.send('Error')
         }
     }
@@ -31,11 +31,11 @@ class controllersAuth {
 
     async signup (req, res)  {
         try {
-            console.log('Accedió correctamente a /signup')
+            logger.info('Accedió correctamente a /signup')
             if (req.isAuthenticated()) return res.redirect('/auth')
             res.render('signup')
         } catch (error) {
-            console.log('Error en /signup: ' + error)
+            logger.error('Error en /signup: ' + error)
             res.send('Error')
         }
     }
@@ -46,35 +46,35 @@ class controllersAuth {
 
     async logout (req, res) {
         try {
-            console.log('Se ha deslogueado la sesión correctamente')
+            logger.info('Se ha deslogueado la sesión correctamente')
             req.logout(err => {
                 if (err) return err
                 res.redirect('/auth/login')
             })
         } catch (error) {
-            console.log('Error en /logout: ' + error)
+            logger.error('Error en /logout: ' + error)
             res.send('Error')
         }
     }
 
     async errorLogin (req, res) {
         try {
-            console.log('No se ha podido iniciar sesión')
+            logger.warn('No se ha podido iniciar sesión')
             if (req.isAuthenticated()) return res.redirect('/auth')
             res.render('error-login')
         } catch (error) {
-            console.log('Error en /error-login: ' + error)
+            logger.error('Error en /error-login: ' + error)
             res.send('Error')
         }
     }
 
     async errorSignup (req, res) {
         try {
-            console.log('No se ha podido registrar el usuario')
+            logger.warn('No se ha podido registrar el usuario')
             if (req.isAuthenticated()) return res.redirect('/auth')
             res.render('error-signup')
         } catch (error) {
-            console.log('Error en /error-signup: ' + error)
+            logger.error('Error en /error-signup: ' + error)
             res.send('Error')
         }
     }

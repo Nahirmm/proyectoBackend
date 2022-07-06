@@ -46,4 +46,3 @@ const logger = winston.createLogger({
 
 module.exports = logger
 
-logger.error('This is an information message.');

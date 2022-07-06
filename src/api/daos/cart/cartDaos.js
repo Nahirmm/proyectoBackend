@@ -2,6 +2,7 @@ const cartModel = require ('../../models/mongo').cartMongo
 const classMongo = require('../../class/class')
 const classMongoCart = new classMongo(cartModel) 
 const moment = require('moment')
+const logger = require('../../utils/winston')
 
 class cartDaoClass {
     constructor() {
@@ -12,7 +13,7 @@ class cartDaoClass {
         try {
             return await classMongoCart.getAll()
         } catch (error) {
-            console.log("Error in getAllCars " + error)
+            logger.error("Error in getAllCars " + error)
         }
     }
 
@@ -24,7 +25,7 @@ class cartDaoClass {
             }
             return await classMongoCart.save(newCart)
         }catch(error){
-            console.log("Error in createCart " + error)
+            logger.error("Error in createCart " + error)
         }
     }
 
@@ -32,7 +33,7 @@ class cartDaoClass {
         try {
             await classMongoCart.delete(idCart)
         }catch (error) {
-            console.log("Error in deleteCart " + error)
+            logger.error("Error in deleteCart " + error)
         }
     }
 
@@ -41,7 +42,7 @@ class cartDaoClass {
             const cartById = await classMongoCart.getById(idCart)
             return cartById.products
         }catch (error) {
-            console.log("Error in listProductsInCart " + error)
+            logger.error("Error in listProductsInCart " + error)
         }
     }
 
@@ -53,7 +54,7 @@ class cartDaoClass {
             return cartUpdated
 
         }catch (error) {
-            throw new Error(error.message)
+            logger.error("Error en addProductInCart " + error)
         }
     }
     
@@ -64,7 +65,7 @@ class cartDaoClass {
             const cartUpdated = await classMongoCart.update(cartById, idCart)
             return cartUpdated
         }catch (error) {
-            throw new Error(error.message)
+            logger.error("Error en deleteProductInCart" + error)
         }
     }
 }

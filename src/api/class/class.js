@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
+const logger = require('../utils/winston')
 const prodModel = require('../models/mongo').productsMongo
-
 
 class classMongo {
     constructor(schema) {
@@ -12,7 +12,7 @@ class classMongo {
             const list = await this.schema.find({})
             return list
         }catch(error){
-            console.log("Error getAll " + error)
+            logger.error("Error getAll " + error)
         }
     }
 
@@ -21,7 +21,7 @@ class classMongo {
             const saveEntity = await this.schema(data).save()
             return saveEntity
         }catch(error){
-            console.log("Error save " + error)
+            logger.error("Error save " + error)
         }
     }
 
@@ -30,7 +30,7 @@ class classMongo {
             const getByIdEntity = await this.schema.findById(id)
             return getByIdEntity
         } catch(error){
-            console.log("Error in getById " + error)
+            logger.error("Error in getById " + error)
         }
     }
 
@@ -39,7 +39,7 @@ class classMongo {
             const updateEntity = await this.schema.findByIdAndUpdate(id, data)
             return updateEntity;
         } catch(error){
-            console.log("Error in update " + error)
+            logger.error("Error in update " + error)
         }
     }
     
@@ -48,7 +48,7 @@ class classMongo {
             const deleteEntity = await this.schema.findByIdAndDelete(id)
             return deleteEntity
         }catch (error) {
-            console.log("Error in delete " + error)
+            logger.error("Error in delete " + error)
         }
     }
 }
