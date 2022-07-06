@@ -50,7 +50,7 @@ const strategySignup = new Strategy({
    
         const newUser = {
             name: req.body.name,
-            lastName: req.body.lastName,
+            lastNames: req.body.lastNames,
             address: req.body.address,
             age: req.body.age,
             email: req.body.email,
@@ -64,7 +64,7 @@ const strategySignup = new Strategy({
               logger.error('Error al guardar el usuario: ' + err);
               return done(err);
             }
-            logger.data(JSON.stringify(user))
+            logger.data(JSON.stringify(newUser))
             logger.info('El usuario se registró correctamente');
             return done(null, userWithId);
         });

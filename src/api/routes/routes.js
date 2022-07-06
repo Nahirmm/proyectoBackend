@@ -15,7 +15,7 @@ routesAuth.post('/login', passport.authenticate('login', {failureRedirect: '/aut
 
 //SIGNUP
 routesAuth.get('/signup', controllerAuth.signup)
-routesAuth.post('/signup', passport.authenticate('signup', {failureRedirect: '/auth/error-signup'}), controllerAuth.redirectLogin)
+routesAuth.post('/signup', passport.authenticate('signup', {failureRedirect: '/auth/error-signup'}), controllerAuth.redirect)
 
 //LOGOUT
 routesAuth.get('/logout', isAuth, controllerAuth.logout)

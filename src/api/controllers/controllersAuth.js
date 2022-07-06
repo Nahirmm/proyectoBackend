@@ -26,7 +26,7 @@ class controllersAuth {
     }
 
     async redirect (req, res) {
-        res.redirect('/')
+        res.redirect('/auth')
     } 
 
     async signup (req, res)  {
@@ -39,10 +39,6 @@ class controllersAuth {
             res.send('Error')
         }
     }
-
-    async redirectLogin (req, res) {
-        res.redirect('/auth/login')
-    } 
 
     async logout (req, res) {
         try {
