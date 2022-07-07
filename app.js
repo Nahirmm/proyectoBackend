@@ -13,7 +13,7 @@ passport.use('signup', strategySignup)
 
 const { routesProducts } = require('./src/api/routes/routesProducts')
 const { routesCart} = require('./src/api/routes/routesCart')
-const { routesAuth } = require('./src/api/routes/routes')
+const { routesAuth } = require('./src/api/routes/routesAuth')
 const sendEmail = require('./src/api/utils/nodemailer.js')
 const sendSMS = require('./src/api/utils/twilioSMS.js')
 const sendWhatsapp = require('./src/api/utils/twilioWsp.js')

@@ -1,10 +1,10 @@
 const express =  require('express')
 const routesAuth = express.Router()
 const passport = require('passport')
-
 const controllerAuth = require('../controllers/controllersAuth.js')
 const isAuth = require('../middleware/isAuth')
-
+const multer  = require('multer')
+const upload = multer({ dest: 'public/uploads' })
 
 //INDEX
 routesAuth.get('/', isAuth, controllerAuth.products)
@@ -15,8 +15,7 @@ routesAuth.post('/login', passport.authenticate('login', {failureRedirect: '/aut
 
 //SIGNUP
 routesAuth.get('/signup', controllerAuth.signup)
-routesAuth.post('/signup', passport.authenticate('signup', {failureRedirect: '/auth/error-signup'}), controllerAuth.redirect)
-
+routesAuth.post('/signup', upload.single('image'), passport.authenticate('signup', {failureRedirect: '/auth/error-signup'}), controllerAuth.redirect)
 //LOGOUT
 routesAuth.get('/logout', isAuth, controllerAuth.logout)
 

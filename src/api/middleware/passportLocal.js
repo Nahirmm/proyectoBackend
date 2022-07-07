@@ -54,6 +54,7 @@ const strategySignup = new Strategy({
             address: req.body.address,
             age: req.body.age,
             email: req.body.email,
+            image: req.body.image,
             phone: req.body.phone,
             username: req.body.username,
             password: createHash(password),

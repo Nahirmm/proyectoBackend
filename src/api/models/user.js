@@ -7,7 +7,7 @@ const User = mongoose.model('User', new mongoose.Schema({
     age: Number,
     email: String,
     phone: Number,
-    //foto o avatar
+    image: String,
     username: String,
     password: String
 }))

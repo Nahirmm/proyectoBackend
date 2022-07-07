@@ -25,14 +25,14 @@ if (modoServer == 'CLUSTER') {
         })
     } else {
         app
-        .listen(PORT, () => logger.info(`http://localhost:${PORT}/`))
+        .listen(PORT, () => logger.info(`http://localhost:${PORT}/auth/login`))
         .on('error', err => logger.error(err))
         logger.info(`Worker ${process.pid} started`)
     }
 } else {
     app
     .listen(PORT, () => {
-        logger.info(`http://localhost:${PORT}/`)
+        logger.info(`http://localhost:${PORT}/auth/login`)
     })  
     .on('error', err => logger.error(err))
 }
