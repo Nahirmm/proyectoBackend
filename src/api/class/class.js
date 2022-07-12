@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+
 const logger = require('../utils/winston')
 const prodModel = require('../models/mongo').productsMongo
 

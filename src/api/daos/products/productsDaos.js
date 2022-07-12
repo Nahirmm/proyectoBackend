@@ -1,7 +1,4 @@
 const productsModel = require ('../../models/mongo').productsMongo
-const classMongo = require('../../class/class')
-const classMongoProducts = new classMongo(productsModel) 
-const moment = require('moment')
 const logger = require('../../utils/winston')
 
 class productsDaoClass {
@@ -11,51 +8,35 @@ class productsDaoClass {
 
     async getAllProducts(){
         try{
-            return await classMongoProducts.getAll()
+            const list = await productsModel.find({})
+            return list
         }catch(error){
             logger.error("Error getAllProducts " + error)
         }
     }
 
-    async saveProduct(data){
+    async saveProduct(product){
         try{
-            const newProduct = {
-                timestamp: moment().format('L LTS'),
-                name: data.name,
-                description: data.description,
-                code: data.code,
-                url: data.url,
-                price: data.price,
-                stock: data.stock
-            }
-            await classMongoProducts.save(newProduct) 
-            return newProduct
+            const saveProd = await productsModel(product).save()
+            return saveProd
         }catch(error){
             logger.error("Error saveProducts " + error)
         }
-    }
+    } 
 
     async getByIdProduct(idProduct){
         try {
-            return await classMongoProducts.getById(idProduct)
+            const getByIdProd = await productsModel.findById(idProduct)
+            return getByIdProd
         } catch(error){
             logger.error("Error in getByIdProduct " + error)
         }
     }
 
-    async updateProduct(data, idProduct){
+    async updateProduct(idProduct, data){
         try {
-            const updateProduct = {
-                timestamp: moment().format('L LTS'),
-                name: data.name,
-                description: data.description,
-                code: data.code,
-                url: data.url,
-                price: data.price,
-                stock: data.stock
-            }
-            await classMongoProducts.update(updateProduct, idProduct)
-            return updateProduct;
+            const updateProd = await productsModel.findByIdAndUpdate(idProduct, data)
+            return updateProd
         } catch(error){
             logger.error("Error in updateProducts " + error)
         }
@@ -63,11 +44,12 @@ class productsDaoClass {
     
     async deleteProduct(idProduct){
         try {
-            await classMongoProducts.delete(idProduct)
+            const deleteProd = await productsModel.findByIdAndDelete(idProduct)
+            return deleteProd
         }catch (error) {
             logger.error("Error " + error)
         }
-    }
+    } 
 }
 
 module.exports = productsDaoClass
