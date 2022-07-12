@@ -15,7 +15,7 @@ class productsServices {
         }
     }
 
-    async saveProduct(product){
+    async saveProduct(data){
         try{
             const newProduct = {
                 timestamp: moment().format('L LTS'),

@@ -1,4 +1,4 @@
-const containerProducts = require('../../daos/products/productsDaos')
+const containerProducts = require('../../services/productsServices')
 const newContainerProducts = new containerProducts()
 
 class productsControllers {
