@@ -1,7 +1,8 @@
 const express =  require('express')
 const routesProducts = express.Router()
 
-const productsControllers = require('../controllers/products/productsController')
+const prodControllers = require('../controllers/products/productsController')
+const productsControllers = prodControllers.getInstance()
 
 const isAuth = require('../middleware/isAuth')
 

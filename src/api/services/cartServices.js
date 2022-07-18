@@ -1,18 +1,26 @@
 const cartDaos = require('../daos/cart/cartDaos')
-const cartDao = new cartDaos()
+const cartDao = cartDaos.getInstance()
 const logger = require('../utils/winston')
 const moment = require('moment')
+let instance = null
 
-class cartService {
+class CartService {
     constructor() {
         this.cart = []
+    }
+
+    static getInstance() {
+        if(!instance) {
+            instance = new CartService()
+        }
+        return instance
     }
 
     async getAllCarts() {
         try {
             return await cartDao.getAllCarts()
         } catch (error) {
-            logger.error("Error in getAllCars " + error)
+            logger.error("Error in getAllCars-Services: " + error)
         }
     }
 
@@ -24,7 +32,7 @@ class cartService {
             }
             return await cartDao.createCart(newCart)
         }catch(error){
-            logger.error("Error in createCart " + error)
+            logger.error("Error in createCart-Services: " + error)
         }
     }
 
@@ -36,7 +44,7 @@ class cartService {
                 logger.warn('El ID ingresado es incorrecto')
             }
         }catch (error) {
-            logger.error("Error in deleteCart " + error)
+            logger.error("Error in deleteCart-Services: " + error)
         }
     }
 
@@ -49,17 +57,17 @@ class cartService {
                 logger.warn('El ID ingresado es incorrecto')
             }
         }catch (error) {
-            logger.error("Error in listProductsInCart " + error)
+            logger.error("Error in listProductsInCart-Services: " + error)
         }
     }
 
     async addProductInCart(idCart, product) {
         try {
-            const cartUpdated = await cartDao.addProductInCart(product, idCart)
+            const cartUpdated = await cartDao.addProductInCart(idCart, product)
             return cartUpdated
 
         }catch (error) {
-            logger.error("Error en addProductInCart " + error)
+            logger.error("Error en addProductInCart-Services: " + error)
         }
     }
     
@@ -68,9 +76,9 @@ class cartService {
             const cartUpdated = await cartDao.deleteProductInCart(idCart, idProduct)
             return cartUpdated
         }catch (error) {
-            logger.error("Error en deleteProductInCart" + error)
+            logger.error("Error en deleteProductInCart-Services: " + error)
         }
     } 
 }
 
-module.exports = cartService
+module.exports = CartService

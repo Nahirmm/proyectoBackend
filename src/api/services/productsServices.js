@@ -1,10 +1,18 @@
 const productsDaos = require('../daos/products/productsDaos')
-const prodDao = new productsDaos()
+const prodDao = productsDaos.getInstance()
 const logger = require('../utils/winston')
 const moment = require('moment')
+let instance = null
 
-class productsServices {
+class ProductsServices {
     constructor() {}
+
+    static getInstance() {
+        if(!instance) {
+            instance = new ProductsServices()
+        }
+        return instance
+    }
 
     async getAllProducts(){
         try{
@@ -39,14 +47,14 @@ class productsServices {
                 const prod = await prodDao.getByIdProduct(idProduct)
                 return prod
             } else {
-                logger.warn('El ID ingresado es incorrecto')
+                logger.warn('En getByIdProduct el ID ingresado es incorrecto')
             }
         } catch(error){
             logger.error("Error in getByIdProduct " + error)
         }
     }
 
-    async updateProduct(idProduct, data){
+    async updateProduct(data, idProduct){
         try {
             if (idProduct.length == 24) {
                 const updateProduct = {
@@ -61,7 +69,7 @@ class productsServices {
                 await prodDao.updateProduct(idProduct, updateProduct)
                 return updateProduct
             } else {
-                logger.warn('El ID ingresado es incorrecto')
+                logger.warn('En updateProduct el ID ingresado es incorrecto')
             }
         } catch(error){
             logger.error("Error in updateProducts " + error)
@@ -73,7 +81,7 @@ class productsServices {
             if (idProduct.length == 24) {
                 await prodDao.deleteProduct(idProduct)
             } else {
-                logger.warn('El ID ingresado es incorrecto')
+                logger.warn('En deleteProduct el ID ingresado es incorrecto')
             }
         }catch (error) {
             logger.error("Error " + error)
@@ -81,4 +89,4 @@ class productsServices {
     } 
 }
 
-module.exports = productsServices
+module.exports = ProductsServices

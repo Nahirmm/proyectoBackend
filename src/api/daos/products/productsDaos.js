@@ -1,9 +1,15 @@
 const productsModel = require ('../../models/mongo').productsMongo
 const logger = require('../../utils/winston')
+let instance = null
 
-class productsDaoClass {
-    constructor() {
-        this.products = []
+class ProductsDaoClass {
+    constructor() {}
+
+    static getInstance() {
+        if(!instance) {
+            instance = new ProductsDaoClass()
+        }
+        return instance
     }
 
     async getAllProducts(){
@@ -11,7 +17,7 @@ class productsDaoClass {
             const list = await productsModel.find({})
             return list
         }catch(error){
-            logger.error("Error getAllProducts " + error)
+            logger.error("Error getAllProducts-DAO: " + error)
         }
     }
 
@@ -20,7 +26,7 @@ class productsDaoClass {
             const saveProd = await productsModel(product).save()
             return saveProd
         }catch(error){
-            logger.error("Error saveProducts " + error)
+            logger.error("Error saveProducts-DAO: " + error)
         }
     } 
 
@@ -29,7 +35,7 @@ class productsDaoClass {
             const getByIdProd = await productsModel.findById(idProduct)
             return getByIdProd
         } catch(error){
-            logger.error("Error in getByIdProduct " + error)
+            logger.error("Error in getByIdProduct-DAO: " + error)
         }
     }
 
@@ -38,7 +44,7 @@ class productsDaoClass {
             const updateProd = await productsModel.findByIdAndUpdate(idProduct, data)
             return updateProd
         } catch(error){
-            logger.error("Error in updateProducts " + error)
+            logger.error("Error in updateProducts-DAO: " + error)
         }
     }
     
@@ -47,9 +53,9 @@ class productsDaoClass {
             const deleteProd = await productsModel.findByIdAndDelete(idProduct)
             return deleteProd
         }catch (error) {
-            logger.error("Error " + error)
+            logger.error("Error in deleteProduct-DAO: " + error)
         }
     } 
 }
 
-module.exports = productsDaoClass
+module.exports = ProductsDaoClass

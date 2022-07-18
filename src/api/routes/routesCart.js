@@ -1,7 +1,9 @@
 const express =  require('express')
 const routesCart = express.Router()
 
-const cartsControllers = require('../controllers/cart/cartControllers')
+const cartControllers = require('../controllers/cart/cartControllers')
+const cartsControllers = cartControllers.getInstance()
+
 const isAuth = require('../middleware/isAuth')
 
 //RUTAS CARRITOS

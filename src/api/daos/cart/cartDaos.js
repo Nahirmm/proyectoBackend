@@ -1,9 +1,17 @@
 const cartModel = require ('../../models/mongo').cartMongo
 const logger = require('../../utils/winston')
+let instance = null
 
-class cartDaoClass {
+class CartDaoClass {
     constructor() {
         this.cart = []
+    }
+
+    static getInstance() {
+        if(!instance) {
+            instance = new CartDaoClass()
+        }
+        return instance
     }
 
     async getAllCarts() {
@@ -11,7 +19,7 @@ class cartDaoClass {
             const carts = await cartModel.find({})
             return carts
         } catch (error) {
-            logger.error("Error in getAllCars " + error)
+            logger.error("Error in getAllCars-DAO: " + error)
         }
     }
 
@@ -20,7 +28,7 @@ class cartDaoClass {
             const saveCart = await cartModel(data).save()
             return saveCart
         }catch(error){
-            logger.error("Error in createCart " + error)
+            logger.error("Error in createCart-DAO: " + error)
         }
     }
  
@@ -29,7 +37,7 @@ class cartDaoClass {
             const deleteCart = await cartModel.findByIdAndDelete(idCart)
             return deleteCart
         }catch (error) {
-            logger.error("Error in deleteCart " + error)
+            logger.error("Error in deleteCart-DAO: " + error)
         }
     }
 
@@ -38,33 +46,32 @@ class cartDaoClass {
             const cartById = await cartModel.findById(idCart)
             return cartById
         }catch (error) {
-            logger.error("Error in listProductsInCart " + error)
+            logger.error("Error in listProductsInCart-DAO: " + error)
         }
     }
 
     async addProductInCart(idCart, product) {
         try {
-
             const cartById = await cartModel.findById(idCart)
             cartById.products.push(product)
-            const updateCart = await cartModel.findByIdAndUpdate(cartById, product)
+            const updateCart = await cartModel.findByIdAndUpdate(idCart, cartById)
             return updateCart
 
         }catch (error) {
-            logger.error("Error en addProductInCart " + error)
+            logger.error("Error en addProductInCart-DAO: " + error)
         }
     }
    
     async deleteProductInCart(idCart, idProduct) {
         try{
             const cartById = await cartModel.findById(idCart)
-            cartById.products.delete(idProduct)
-            const cartUpdated = await cartModel.findByIdAndUpdate(cartById, idCart)
+            cartById.products.splice(idProduct)
+            const cartUpdated = await cartModel.findByIdAndUpdate(idCart, cartById)
             return cartUpdated
         }catch (error) {
-            logger.error("Error en deleteProductInCart" + error)
+            logger.error("Error en deleteProductInCart-DAO: " + error)
         }
     } 
 }
 
-module.exports = cartDaoClass
+module.exports = CartDaoClass

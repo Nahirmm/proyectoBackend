@@ -1,10 +1,19 @@
-const containerCart = require('../../daos/cart/cartDaos')
-const newContainerCart = new containerCart()
+const containerCart = require('../../services/cartServices')
+const newContainerCart = containerCart.getInstance()
 
-const containerProducts = require('../../daos/products/productsDaos')
-const newContainerProducts = new containerProducts()
+const containerProducts = require('../../services/productsServices')
+const newContainerProducts = containerProducts.getInstance()
+
+let instance = null
 
 class cartControllers {
+
+    static getInstance() {
+        if(!instance) {
+            instance = new cartControllers()
+        }
+        return instance
+    }
 
     async addCart(req, res) {
         try {
@@ -54,4 +63,4 @@ class cartControllers {
 
 }
 
-module.exports = new cartControllers
+module.exports = cartControllers

@@ -1,6 +1,14 @@
 const logger = require('../utils/winston')
+let instance = null
 
 class controllersAuth {
+
+    static getInstance() {
+        if(!instance) {
+            instance = new controllersAuth()
+        }
+        return instance
+    }
 
     async products (req, res) {
         try { 
@@ -76,4 +84,4 @@ class controllersAuth {
     }
 }
 
-module.exports = new controllersAuth
+module.exports = controllersAuth
