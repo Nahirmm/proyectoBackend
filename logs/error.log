@@ -32,3 +32,17 @@
 [31m[2022-07-18T13:51:06.838Z] - level: error - Error en deleteProductInCart-DAO: TypeError: cartById.products.delete is not a function[39m
 [31m[2022-07-18T13:52:23.857Z] - level: error - Error en deleteProductInCart-DAO: TypeError: cartById.products.delete is not a function[39m
 [31m[2022-07-18T13:52:51.039Z] - level: error - Error en deleteProductInCart-DAO: TypeError: cartById.products.delete is not a function[39m
+[31m[2022-08-04T14:09:50.480Z] - level: error - Error in getByIdProduct-DAO: CastError: Cast to ObjectId failed for value "{ id: '62d555f18b5b3ea833fbd390' }" (type Object) at path "_id" for model "products"[39m
+[31m[2022-08-04T14:11:20.145Z] - level: error - Error in getByIdProduct ReferenceError: id is not defined[39m
+[31m[2022-08-04T14:11:59.540Z] - level: error - Error in getByIdProduct ReferenceError: idP is not defined[39m
+[31m[2022-08-04T14:12:34.629Z] - level: error - Error in getByIdProduct ReferenceError: idP is not defined[39m
+[31m[2022-08-04T14:13:23.606Z] - level: error - Error in getByIdProduct ReferenceError: idP is not defined[39m
+[31m[2022-08-04T14:13:40.635Z] - level: error - Error in getByIdProduct-DAO: CastError: Cast to ObjectId failed for value "{ id: '62d555f18b5b3ea833fbd390' }" (type Object) at path "_id" for model "products"[39m
+[31m[2022-08-04T14:36:39.230Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T14:37:18.538Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'id')[39m
+[31m[2022-08-04T14:37:43.985Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'id')[39m
+[31m[2022-08-04T14:38:30.378Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T14:43:02.741Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T14:44:45.608Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T14:48:36.427Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T14:50:06.871Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m

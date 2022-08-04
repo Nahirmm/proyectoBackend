@@ -9,3 +9,5 @@ class ProductDto {
         this.stock = stock
     }
 }
+
+module.exports = ProductDto

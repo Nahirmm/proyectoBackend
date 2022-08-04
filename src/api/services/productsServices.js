@@ -34,8 +34,8 @@ class ProductsServices {
                 price: data.price,
                 stock: data.stock
             }
-            await prodDao.saveProduct(newProduct) 
-            return newProduct
+            const prodAdded = await prodDao.saveProduct(newProduct) 
+            return prodAdded
         }catch(error){
             logger.error("Error saveProducts " + error)
         }
@@ -47,15 +47,16 @@ class ProductsServices {
                 const prod = await prodDao.getByIdProduct(idProduct)
                 return prod
             } else {
-                logger.warn('En getByIdProduct el ID ingresado es incorrecto')
+                logger.warn('En getByIdProduct-productsService el ID ingresado es incorrecto')
             }
         } catch(error){
             logger.error("Error in getByIdProduct " + error)
         }
     }
 
-    async updateProduct(data, idProduct){
+    async updateProduct(idProduct, data){
         try {
+            
             if (idProduct.length == 24) {
                 const updateProduct = {
                     timestamp: moment().format('L LTS'),
@@ -66,10 +67,10 @@ class ProductsServices {
                     price: data.price,
                     stock: data.stock
                 }
-                await prodDao.updateProduct(idProduct, updateProduct)
-                return updateProduct
+                const updatedProduct = await prodDao.updateProduct(idProduct, updateProduct)
+                return updatedProduct
             } else {
-                logger.warn('En updateProduct el ID ingresado es incorrecto')
+                logger.warn('En updateProduct-productsServices el ID ingresado es incorrecto')
             }
         } catch(error){
             logger.error("Error in updateProducts " + error)
