@@ -56,7 +56,6 @@ class ProductsServices {
 
     async updateProduct(idProduct, data){
         try {
-            
             if (idProduct.length == 24) {
                 const updateProduct = {
                     timestamp: moment().format('L LTS'),

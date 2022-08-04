@@ -36,7 +36,7 @@ class productsControllers {
     async addProduct(req, res) {
         try {
             const newProduct = await newContainerProducts.saveProduct(req.body) 
-            res.status(201).json(newProduct)
+            res.status(200).json(newProduct)
         }catch (error) {
             res.status(500).json({error: error.message})
         }
@@ -44,7 +44,7 @@ class productsControllers {
 
     async updateProduct(req, res) {
         try {
-            const updateP = await newContainerProducts.updateProduct(req.body, req.params.id)
+            const updateP = await newContainerProducts.updateProduct(req.params.id, req.body)
             res.status(200).json(updateP)
         }catch (error) {
             res.status(500).json({error: error.message})

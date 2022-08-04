@@ -46,3 +46,11 @@
 [31m[2022-08-04T14:44:45.608Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
 [31m[2022-08-04T14:48:36.427Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
 [31m[2022-08-04T14:50:06.871Z] - level: error - Error in updateProducts TypeError: Cannot read properties of undefined (reading 'length')[39m
+[31m[2022-08-04T15:59:05.692Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T15:59:16.081Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:01:05.113Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:08:15.141Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:08:27.517Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:08:45.983Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:10:06.689Z] - level: error - Error en el test postProduct: AxiosError: Request failed with status code 404[39m
+[31m[2022-08-04T16:24:37.834Z] - level: error - se Genero el siguiente error en el test deleteProduct AxiosError: Request failed with status code 404[39m

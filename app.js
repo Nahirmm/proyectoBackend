@@ -18,9 +18,9 @@ const sendEmail = require('./src/api/utils/nodemailer.js')
 const sendSMS = require('./src/api/utils/twilioSMS.js')
 const sendWhatsapp = require('./src/api/utils/twilioWsp.js')
 
-const { graphqlHTTP } = require('express-graphql') 
-const {schemaGraphQL} = require('./src/api/models/graphql')
-const graphQLRoot = require('./src/api/controllers/controllerGraphQL')
+//const { graphqlHTTP } = require('express-graphql') 
+//const {schemaGraphQL} = require('./src/api/models/graphql')
+//const graphQLRoot = require('./src/api/controllers/controllerGraphQL')
 
 app.set('view engine', 'ejs')
 app.set('views', './src/views')
@@ -47,11 +47,11 @@ app.use('/auth', routesAuth)
 app.use('/products', routesProducts)
 app.use('/cart', routesCart)
 
-app.use('/graphql', graphqlHTTP({
+/*app.use('/graphql', graphqlHTTP({
     schema: schemaGraphQL,
     rootValue: graphQLRoot,
     graphiql: true,
- }));
+ }));*/
  
 
 mongoose.connect(process.env.MONGODB)
